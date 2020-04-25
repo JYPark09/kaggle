@@ -13,6 +13,8 @@ def fill_missing(df):
     df.Embarked = df.Embarked.fillna('S') # S is most
     df.Fare = df.Fare.fillna(fare_mean)
 
+    df['family'] = df.SibSp + df.Parch + 1
+
     df.Sex = df.Sex.replace('male', 0)
     df.Sex = df.Sex.replace('female', 1)
 
@@ -31,8 +33,8 @@ print('[Test dataset info]')
 test.info()
 print()
 
-train_np = train[['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Survived']].values
-test_np = test[['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']].values
+train_np = train[['PassengerId', 'Pclass', 'Sex', 'Age', 'family', 'Fare', 'Embarked', 'Survived']].values
+test_np = test[['PassengerId', 'Pclass', 'Sex', 'Age', 'family', 'Fare', 'Embarked']].values
 
 np.save('data/train.npy', train_np)
 np.save('data/test.npy', test_np)

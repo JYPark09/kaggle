@@ -18,8 +18,8 @@ fix_params = {
 
 dataset = np.load('data/train.npy')
 
-features = dataset[:, 1:8]
-target = dataset[:, 8]
+features = dataset[:, 1:7]
+target = dataset[:, 7]
 
 csv = GridSearchCV(XGBClassifier(**fix_params),
                 cv_params,
